@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
       <Container>
         <nav className='flex items-center justify-between'>
           <div className='flex items-center'>
-            <span className='text-2xl font-medium tracking-tight text-gray-900'>
+            <span className='text-3xl font-semibold tracking-tight text-gray-900'>
               <a href='#'>PlanNow</a>
             </span>
           </div>

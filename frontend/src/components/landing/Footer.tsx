@@ -11,11 +11,11 @@ const Footer: React.FC = () => {
         <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-12'>
           <div className='col-span-1 md:col-span-1'>
             <div className='mb-5'>
-              <span className='text-xl font-medium text-gray-900'>Minimal</span>
+              <span className='text-xl font-medium text-gray-900'>PlanNow</span>
             </div>
             <p className='text-gray-600 mb-4 max-w-xs'>
-              Building beautiful digital experiences with a focus on minimalism
-              and functionality.
+              Empowering teams to plan smarter, allocate better, and deliver
+              projects with confidence.
             </p>
             <div className='flex space-x-4'>
               <a
