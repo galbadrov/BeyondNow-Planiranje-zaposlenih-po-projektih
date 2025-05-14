@@ -8,7 +8,7 @@ const Landing: React.FC = () => {
   return (
     <div className='min-h-screen bg-white relative overflow-hidden'>
       {/* DOTS */}
-      <div className='absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e0e7ff_1px,transparent_2.5px)] bg-[size:40px_40px] opacity-80 animate-diagonal-move z-0' />
+      <div className='absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e0e7ff_1px,transparent_2.5px)] bg-[size:40px_40px] opacity-90 animate-diagonal-move z-0' />
 
       <div className='relative z-10'>
         <Navbar />

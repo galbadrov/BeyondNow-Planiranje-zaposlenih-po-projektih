@@ -12,8 +12,15 @@ const Hero: React.FC = () => {
             Smart employee planning by projects
           </h1>
           <p className='mt-6 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed'>
-            Easily manage availability, assign resources based on skills, and
-            gain clear insight into workload with an intuitive and efficient
+            Easily manage availability , assign resources based on skills, and
+            gain clear insight into workload with an{" "}
+            <span className="text-black font-extrabold text-2xl tracking-wide font-['Geist Mono']">
+              intuitive
+            </span>{" "}
+            and{" "}
+            <span className="text-black font-extrabold text-2xl tracking-wide font-['Geist Mono']">
+              efficient{" "}
+            </span>
             project planning web app.
           </p>
           <div className='mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6'>
