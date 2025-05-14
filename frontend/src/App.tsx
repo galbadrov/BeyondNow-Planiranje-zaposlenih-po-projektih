@@ -1,17 +1,7 @@
-import { Header } from "./components/Header";
-import { Login } from "./components/Login";
-import { Footer } from "./components/Footer";
+import Landing from "./pages/Landing";
 
 function App() {
-  return (
-    <>
-      <div className="h-screen bg-gray-500">
-        <Header />
-        <Login />
-        <Footer />
-      </div>
-    </>
-  );
+  return <Landing />;
 }
 
 export default App;
