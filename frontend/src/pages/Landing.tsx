@@ -13,7 +13,20 @@ const Landing: React.FC = () => {
       <div className='relative z-10'>
         <Navbar />
         <Hero />
-        <Features />
+
+        {/* Boxes */}
+        <div className='relative'>
+          <div
+            className='absolute inset-0 pointer-events-none bg-[linear-gradient(#c7d2fe_1px,transparent_1px),linear-gradient(90deg,#c7d2fe_1px,transparent_1px)] bg-[size:32px_32px] opacity-20'
+            style={{
+              maskImage:
+                "radial-gradient(ellipse at center, black 20%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse at center, black 40%, transparent 100%)",
+            }}
+          />
+          <Features />
+        </div>
         <Footer />
       </div>
     </div>
