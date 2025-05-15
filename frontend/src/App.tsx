@@ -1,14 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
     <Routes>
-      <div className='h-screen bg-[#111827]'>
-        <Header />
-        <Login />
-        <Footer />
-      </div>
+      <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/' element={<Landing />} />
     </Routes>
   );
