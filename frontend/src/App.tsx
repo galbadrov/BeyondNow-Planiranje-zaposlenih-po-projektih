@@ -1,16 +1,11 @@
-import { Header } from "./components/Header";
-import { Login } from "./components/Login";
-import { Footer } from "./components/Footer";
+import { Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
 
 function App() {
   return (
-    <>
-      <div className="h-screen bg-gray-500">
-        <Header />
-        <Login />
-        <Footer />
-      </div>
-    </>
+    <Routes>
+      <Route path='/' element={<Landing />} />
+    </Routes>
   );
 }
 
