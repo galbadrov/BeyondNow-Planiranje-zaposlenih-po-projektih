@@ -1,7 +1,8 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-import Button from "../ui/Button";
-import Container from "../ui/Container";
+import Button from "../ui/ButtonLanding";
+import Container from "../ui/ContainerLanding";
+import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   return (
@@ -24,10 +25,12 @@ const Hero: React.FC = () => {
             project planning web app.
           </p>
           <div className='mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6'>
-            <Button variant='primary' size='lg'>
-              Get Started
-              <ArrowRight size={16} className='ml-2' />
-            </Button>
+            <Link to='/login'>
+              <Button variant='primary' size='lg'>
+                Get Started
+                <ArrowRight size={16} className='ml-2' />
+              </Button>
+            </Link>
             <Button variant='outline' size='lg'>
               Explore
             </Button>

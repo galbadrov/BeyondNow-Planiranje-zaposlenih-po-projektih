@@ -7,7 +7,7 @@ import {
   FileCheck,
   BarChart2,
 } from "lucide-react";
-import Container from "../ui/Container";
+import Container from "../ui/ContainerLanding";
 
 interface FeatureCardProps {
   icon: React.ReactNode;

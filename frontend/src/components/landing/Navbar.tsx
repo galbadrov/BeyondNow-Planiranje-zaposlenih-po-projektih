@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Button from "../ui/Button";
-import Container from "../ui/Container";
+import Button from "../ui/ButtonLanding";
+import Container from "../ui/ContainerLanding";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,12 +50,16 @@ const Navbar: React.FC = () => {
               className='text-gray-600 hover:text-gray-900 font-medium transition-colors'>
               Features
             </a>
-            <Button variant='outline' size='sm'>
-              Sign In
-            </Button>
-            <Button variant='primary' size='sm'>
-              Get Started
-            </Button>
+            <Link to='/login'>
+              <Button variant='outline' size='sm'>
+                Sign In
+              </Button>
+            </Link>
+            <Link to='/login'>
+              <Button variant='primary' size='sm'>
+                Get Started
+              </Button>
+            </Link>
           </div>
         </nav>
       </Container>
