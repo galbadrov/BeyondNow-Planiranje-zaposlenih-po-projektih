@@ -16,15 +16,17 @@ export function Header() {
   return (
     <div>
       <div className='flex flex-row sticky top-0 p-5 text-2xl'>
-        <div className='text w-auto mr-4'>User: </div>
-        <div className='currentUser w-auto mr-5'> </div>
-        <hr className='border-t-35 w-1 rounded-xl mr-5 border-slate-300'></hr>
-        <form className='bg-gray-300 rounded-md'>
+        <div className='text text-[#F9FAFB] w-auto mr-4'>User: </div>
+        <div className='currentUser text-[#F9FAFB] w-auto mr-5'>
+          {"Logged in User"}
+        </div>
+        <hr className='border-t-35 w-1 rounded-xl mr-5 border-[#F9FAFB]'></hr>
+        <form className='bg-[#F9FAFB] rounded-md'>
           <select
             id='orgDropdown'
             value={selectedOrg}
             onChange={handleChange}
-            className='text-gray-700 rounded-md text-[18px] w-full cursor-pointer'>
+            className='text-[#111827] rounded-md text-[18px] w-full cursor-pointer'>
             {organizations.map((org) => (
               <option key={org.id} value={org.id}>
                 {org.name}
@@ -32,11 +34,11 @@ export function Header() {
             ))}
           </select>
         </form>
-        <button className='bg-gray-900 text-white px-4 rounded-md ml-auto mr-5 cursor-pointer'>
+        <button className='bg-[#F9FAFB] text-[#111827] px-4 rounded-md ml-auto mr-5 cursor-pointer'>
           LOGOUT
         </button>
       </div>
-      <hr className='border-t-4 border-slate-300' />
+      <hr className='border-t-4 border-[#F9FAFB]' />
     </div>
   );
 }
