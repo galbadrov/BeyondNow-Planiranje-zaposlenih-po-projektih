@@ -52,11 +52,11 @@ export function Sidebar() {
 
   return (
     <div className='w-68 h-[100%] bg-[#111827] overflow-y-auto shadow-md flex flex-col border-r border-[#F9FAFB] scrollbar-none'>
-      <div className='p-4 text-[#F9FAFB] text-xl border-b border-[#F9FAFB] flex justify-between items-center'>
+      <div className='p-4 text-[#F9FAFB] text-xl flex justify-between items-center'>
         <span>Projects</span>
         <button
           /*onClick=*/
-          className='bg-[#F9FAFB] hover:bg-gray-200 text-[#111827] rounded text-sm flex items-center justify-center cursor-pointer w-13 h-7'>
+          className='bg-[#F9FAFB] hover:bg-[#e3e3e3] text-[#111827] rounded text-sm flex items-center justify-center cursor-pointer w-13 h-7'>
           ADD
         </button>
       </div>
@@ -65,7 +65,7 @@ export function Sidebar() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className='bg-white p-3 rounded-lg shadow hover:bg-gray-50 cursor-pointer'>
+            className='bg-white p-3 rounded-lg shadow hover:bg-[#e3e3e3]  cursor-pointer'>
             {project.name}
           </div>
         ))}
