@@ -1,4 +1,4 @@
-import { DataDisplay } from "../components/dashboard/DataDisplay";
+import { DataDisplay } from "../components/dashboard/DataDisplay/DataDisplay";
 import { Footer } from "../components/dashboard/Footer";
 import { Header } from "../components/dashboard/Header";
 import { Sidebar } from "../components/dashboard/sidebar";
