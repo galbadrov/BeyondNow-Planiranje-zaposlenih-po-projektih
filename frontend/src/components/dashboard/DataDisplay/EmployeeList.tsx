@@ -6,7 +6,7 @@ type Employee = {
   };
   
   const testEmployees: Employee[] = [
-    { id: 1, name: "Janez Novak", role: "Frontend Developer", avatar: "https://i.pravatar.cc/150?img=1" },
+    { id: 1, name: "Andrej Nireko", role: "Frontend Developer", avatar: "https://i.pravatar.cc/150?img=1" },
     { id: 2, name: "Ana Kovač", role: "Backend Developer", avatar: "https://i.pravatar.cc/150?img=2" },
     { id: 3, name: "Marko Horvat", role: "UI Designer", avatar: "https://i.pravatar.cc/150?img=3" },
     { id: 4, name: "Ivana Petrović", role: "Project Manager", avatar: "https://i.pravatar.cc/150?img=4" },

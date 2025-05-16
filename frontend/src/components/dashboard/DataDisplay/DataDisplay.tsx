@@ -7,8 +7,7 @@ export function DataDisplay() {
   const [activeTab, setActiveTab] = useState<"timeline" | "employees" | "project">("project");
 
   return (
-    <div className="flex-1 overflow-y-auto p-6 bg-[#F9FAFB]">
-      {/* Tabovi za izbiro prikaza */}
+    <div className="flex-1 overflow-y-auto p-6 bg-[#111827]">
       <div className="flex space-x-4 mb-6">
         <button
           onClick={() => setActiveTab("project")}
