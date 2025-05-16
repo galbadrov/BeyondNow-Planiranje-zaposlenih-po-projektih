@@ -8,10 +8,10 @@ type ProjectDetail = {
   
   const testProjectDetails: ProjectDetail = {
     id: 1,
-    title: "Dashboard za spletne analitike",
-    description: "Interaktivni dashboard za prikaz in analizo spletnih metrik.",
+    title: "Dashboard for Website Metrics",
+    description: "Interactive dashboard to monitor website performance metrics.",
     status: "active",
-    deadline: "2023-12-15",
+    deadline: "2025-12-15",
   };
   
   export function ProjectDetails() {
@@ -25,7 +25,7 @@ type ProjectDetail = {
             testProjectDetails.status === "completed" ? "bg-blue-100 text-blue-800" :
             "bg-yellow-100 text-yellow-800"
           }`}>
-            {testProjectDetails.status === "active" ? "Aktiven" : 
+            {testProjectDetails.status === "active" ? "Active" : 
              testProjectDetails.status === "completed" ? "Dokončan" : "V čakanju"}
           </span>
           <span className="text-gray-500">Rok: {new Date(testProjectDetails.deadline).toLocaleDateString()}</span>

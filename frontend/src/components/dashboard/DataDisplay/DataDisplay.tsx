@@ -14,19 +14,19 @@ export function DataDisplay() {
           onClick={() => setActiveTab("project")}
           className={`px-4 py-2 rounded-lg ${activeTab === "project" ? 'bg-[#111827] text-white' : 'bg-white text-[#111827]'}`}
         >
-          Podrobnosti projekta
+          Project Details
         </button>
         <button
           onClick={() => setActiveTab("employees")}
           className={`px-4 py-2 rounded-lg ${activeTab === "employees" ? 'bg-[#111827] text-white' : 'bg-white text-[#111827]'}`}
         >
-          Zaposleni
+          Developers
         </button>
         <button
           onClick={() => setActiveTab("timeline")}
           className={`px-4 py-2 rounded-lg ${activeTab === "timeline" ? 'bg-[#111827] text-white' : 'bg-white text-[#111827]'}`}
         >
-          Časovnica
+          Timeline
         </button>
       </div>
 

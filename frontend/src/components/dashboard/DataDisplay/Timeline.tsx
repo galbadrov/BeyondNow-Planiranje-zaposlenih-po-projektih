@@ -6,15 +6,15 @@ type TimelineEvent = {
   };
   
   const testTimelineEvents: TimelineEvent[] = [
-    { id: 1, date: "2023-11-01", title: "Začetek projekta", description: "Projekt se je začel" },
-    { id: 2, date: "2023-11-15", title: "Prva faza dokončana", description: "Osnovna funkcionalnost implementirana" },
-    { id: 3, date: "2023-12-01", title: "Testiranje", description: "Začetek testiranja aplikacije" },
+    { id: 1, date: "2023-11-01", title: "Start of project", description: "project started" },
+    { id: 2, date: "2023-11-15", title: "First release", description: "first release of the application" },
+    { id: 3, date: "2023-12-01", title: "Testing", description: "testing of the application" },
   ];
   
   export function Timeline() {
     return (
       <div className="bg-white p-6 rounded-lg shadow">
-        <h3 className="text-xl font-bold mb-4">Časovnica dogodkov</h3>
+        <h3 className="text-xl font-bold mb-4">Timeline</h3>
         <div className="space-y-4">
           {testTimelineEvents.map(event => (
             <div key={event.id} className="flex space-x-4">

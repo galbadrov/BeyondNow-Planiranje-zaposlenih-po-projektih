@@ -15,7 +15,7 @@ type Employee = {
   export function EmployeeList() {
     return (
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <h3 className="p-4 bg-[#111827] text-white font-medium">Zaposleni na projektu</h3>
+        <h3 className="p-4 bg-[#111827] text-white font-medium">Project Team</h3>
         <ul className="divide-y divide-gray-200">
           {testEmployees.map(employee => (
             <li key={employee.id} className="p-4 flex items-center space-x-4 hover:bg-gray-50">
