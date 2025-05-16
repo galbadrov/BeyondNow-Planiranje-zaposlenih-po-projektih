@@ -21,7 +21,7 @@ export function Header() {
           {"Logged in User"}
         </div>
         <hr className='border-t-35 w-1 rounded-xl mr-5 border-[#F9FAFB]'></hr>
-        <form className='bg-[#F9FAFB] rounded-md'>
+        <form className='bg-[#F9FAFB] rounded-md hover:bg-gray-200'>
           <select
             id='orgDropdown'
             value={selectedOrg}
@@ -34,7 +34,7 @@ export function Header() {
             ))}
           </select>
         </form>
-        <button className='bg-[#F9FAFB] text-[#111827] px-4 rounded-md ml-auto mr-5 cursor-pointer'>
+        <button className='hover:bg-gray-200 bg-[#F9FAFB] text-[#111827] px-4 rounded-md ml-auto mr-5 cursor-pointer'>
           LOGOUT
         </button>
       </div>
