@@ -25,12 +25,14 @@ export function DevelopersTimeline() {
     updateHeadersRef.current();
   }, []);
 
+  //tu fetchamo zaposlene
   const groups = [
     { id: 1, title: "Ana" },
     { id: 2, title: "Marko" },
     { id: 3, title: "Petra" },
   ];
 
+  //tu fetchamo taske zaposlenih
   const items = [
     {
       id: 1,
@@ -116,7 +118,13 @@ export function DevelopersTimeline() {
         padding: "20px",
         borderRadius: "12px",
       }}>
-      <h2 style={{ color: "#F9FAFB", marginBottom: "20px" }}>
+      <h2
+        style={{
+          color: "#F9FAFB",
+          marginTop: "20px",
+          marginBottom: "10px",
+          fontSize: "24px",
+        }}>
         Project Timetable
       </h2>
       <Timeline
