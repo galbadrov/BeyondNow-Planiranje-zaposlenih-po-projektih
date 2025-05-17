@@ -1,35 +1,49 @@
 import Timeline from "react-calendar-timeline";
 import moment from "moment";
 import "react-calendar-timeline/dist/style.css";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 
 export function DevelopersTimeline() {
   // popravljen izpis v headerju --> samo ure (tudi dinamicno ko premikam urnik)
-  const updateHeaders = () => {
-    const headers = document.querySelectorAll(".rct-dateHeader span");
-    headers.forEach((el) => {
-      const text = el.textContent || "";
-      const match = text.match(/\d{1,2}:\d{2}/);
-      if (match) {
-        el.textContent = match[0];
-      }
-    });
+  //1. izpis
+  const todayStart = moment().startOf("day").add(7, "hours"); // danes ob 07:00
+  const todayEnd = moment().startOf("day").add(18, "hours"); // danes ob 17:00
+
+  //state
+  const [timeRange, setTimeRange] = useState({
+    start: todayStart.valueOf(),
+    end: todayEnd.valueOf(),
+  });
+
+  // funkcija za preklop na dnevni pogled (07:00–17:00)
+  const setDailyViewToToday = () => {
+    const start = moment().startOf("day").add(7, "hours").valueOf();
+    const end = moment().startOf("day").add(18, "hours").valueOf();
+    setTimeRange({ start, end });
   };
 
-  // Lahko uporabljaš ref, da ne definiraš funkcije znotraj renderja
-  const updateHeadersRef = useRef(updateHeaders);
-  updateHeadersRef.current = updateHeaders;
+  //funkcija za preklop na tedenski pogled
+  const setWeeklyViewToThisWeek = () => {
+    const start = moment().startOf("week").valueOf();
+    const end = moment().endOf("week").valueOf();
+    setTimeRange({ start, end });
+  };
 
-  // Na začetku (prvi render)
-  useEffect(() => {
-    updateHeadersRef.current();
-  }, []);
+  // funkcija za preklop na mesecni pogled
+  const setMonthlyViewToThisMonth = () => {
+    const start = moment().startOf("month").valueOf();
+    const end = moment().endOf("month").valueOf();
+    setTimeRange({ start, end });
+  };
 
   //tu fetchamo zaposlene
   const groups = [
     { id: 1, title: "Ana" },
     { id: 2, title: "Marko" },
     { id: 3, title: "Petra" },
+    { id: 4, title: "burke" },
+    { id: 5, title: "brapo" },
+    { id: 6, title: "buraz" },
   ];
 
   //tu fetchamo taske zaposlenih
@@ -38,8 +52,8 @@ export function DevelopersTimeline() {
       id: 1,
       group: 1,
       title: "Projekt A",
-      start_time: moment("2023-05-16T09:00").valueOf(),
-      end_time: moment("2023-05-16T11:00").valueOf(),
+      start_time: moment("2025-05-17T09:00").valueOf(),
+      end_time: moment("2025-05-17T11:00").valueOf(),
       itemProps: {
         style: {
           background: "#F9FAFB",
@@ -53,8 +67,8 @@ export function DevelopersTimeline() {
       id: 2,
       group: 1,
       title: "Sestanek",
-      start_time: moment("2023-05-16T13:00").valueOf(),
-      end_time: moment("2023-05-16T14:30").valueOf(),
+      start_time: moment("2025-05-17T13:00").valueOf(),
+      end_time: moment("2025-05-17T14:30").valueOf(),
       itemProps: {
         style: {
           background: "#F9FAFB",
@@ -68,8 +82,8 @@ export function DevelopersTimeline() {
       id: 3,
       group: 2,
       title: "Bug fixing",
-      start_time: moment("2023-05-16T10:00").valueOf(),
-      end_time: moment("2023-05-16T12:00").valueOf(),
+      start_time: moment("2025-05-17T10:00").valueOf(),
+      end_time: moment("2025-05-17T12:00").valueOf(),
       itemProps: {
         style: {
           background: "#F9FAFB",
@@ -83,8 +97,8 @@ export function DevelopersTimeline() {
       id: 4,
       group: 3,
       title: "Code review",
-      start_time: moment("2023-05-16T11:00").valueOf(),
-      end_time: moment("2023-05-16T13:00").valueOf(),
+      start_time: moment("2025-05-17T11:00").valueOf(),
+      end_time: moment("2025-05-17T13:00").valueOf(),
       itemProps: {
         style: {
           background: "#F9FAFB",
@@ -98,8 +112,83 @@ export function DevelopersTimeline() {
       id: 5,
       group: 3,
       title: "DevOps",
-      start_time: moment("2023-05-16T14:00").valueOf(),
-      end_time: moment("2023-05-16T16:00").valueOf(),
+      start_time: moment("2025-05-17T14:00").valueOf(),
+      end_time: moment("2025-05-17T16:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+    {
+      id: 6,
+      group: 4, // burke
+      title: "Dokumentacija",
+      start_time: moment("2025-05-17T09:30").valueOf(),
+      end_time: moment("2025-05-17T11:30").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+    {
+      id: 7,
+      group: 5, // brapo
+      title: "UX raziskava",
+      start_time: moment("2025-05-17T10:30").valueOf(),
+      end_time: moment("2025-05-17T12:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+    {
+      id: 8,
+      group: 5, // brapo
+      title: "Testiranje",
+      start_time: moment("2025-05-17T13:30").valueOf(),
+      end_time: moment("2025-05-17T15:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+    {
+      id: 9,
+      group: 6, // buraz
+      title: "Deploy",
+      start_time: moment("2025-05-17T09:00").valueOf(),
+      end_time: moment("2025-05-17T10:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+    {
+      id: 10,
+      group: 6, // buraz
+      title: "Analiza logov",
+      start_time: moment("2025-05-17T11:00").valueOf(),
+      end_time: moment("2025-05-17T12:30").valueOf(),
       itemProps: {
         style: {
           background: "#F9FAFB",
@@ -127,11 +216,34 @@ export function DevelopersTimeline() {
         }}>
         Project Timetable
       </h2>
+      <div style={{ marginBottom: "10px" }}>
+        <button
+          className='mr-2 bg-[#F9FAFB] text-[#111827] w-25 rounded hover:bg-[#e3e3e3] cursor-pointer'
+          onClick={setDailyViewToToday}>
+          Daily view
+        </button>
+        <button
+          className='mr-2 bg-[#F9FAFB] text-[#111827] w-25 rounded hover:bg-[#e3e3e3] cursor-pointer'
+          onClick={setWeeklyViewToThisWeek}>
+          Weekly view
+        </button>
+        <button
+          className='mr-2 bg-[#F9FAFB] text-[#111827] w-25 rounded hover:bg-[#e3e3e3] cursor-pointer'
+          onClick={setMonthlyViewToThisMonth}>
+          Monthly view
+        </button>
+      </div>
       <Timeline
         groups={groups}
         items={items}
-        defaultTimeStart={moment("2023-05-16T08:00").valueOf()}
-        defaultTimeEnd={moment("2023-05-16T18:00").valueOf()}
+        visibleTimeStart={timeRange.start}
+        visibleTimeEnd={timeRange.end}
+        defaultTimeStart={timeRange.start}
+        defaultTimeEnd={timeRange.end}
+        onTimeChange={(start, end, updateScrollCanvas) => {
+          setTimeRange({ start, end }); // shrani zoom/premik
+          updateScrollCanvas(start, end);
+        }}
         canMove={false}
         canResize={false}
         lineHeight={50}
