@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../components/landing/Hero";
 import Features from "../components/landing/Features";
 import Footer from "../components/landing/Footer";
 import Navbar from "../components/landing/Navbar";
 
 const Landing: React.FC = () => {
+  useEffect(() => {
+    const fetchHello = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/hello`);
+        const data = await res.json();
+        console.log("Backend says:", data.message); // Should log: Hello from Express...
+      } catch (error) {
+        console.error("Error fetching from backend:", error);
+      }
+    };
+
+    fetchHello();
+  }, []);
+
   return (
     <div className='min-h-screen bg-white relative overflow-hidden'>
       {/* DOTS */}
