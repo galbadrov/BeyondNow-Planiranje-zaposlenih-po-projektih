@@ -1,41 +1,9 @@
 import Timeline from "react-calendar-timeline";
 import moment from "moment";
 import "react-calendar-timeline/dist/style.css";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function DevelopersTimeline() {
-  // popravljen izpis v headerju --> samo ure (tudi dinamicno ko premikam urnik)
-  //1. izpis
-  const todayStart = moment().startOf("day").add(7, "hours"); // danes ob 07:00
-  const todayEnd = moment().startOf("day").add(18, "hours"); // danes ob 17:00
-
-  //state
-  const [timeRange, setTimeRange] = useState({
-    start: todayStart.valueOf(),
-    end: todayEnd.valueOf(),
-  });
-
-  // funkcija za preklop na dnevni pogled (07:00–17:00)
-  const setDailyViewToToday = () => {
-    const start = moment().startOf("day").add(7, "hours").valueOf();
-    const end = moment().startOf("day").add(18, "hours").valueOf();
-    setTimeRange({ start, end });
-  };
-
-  //funkcija za preklop na tedenski pogled
-  const setWeeklyViewToThisWeek = () => {
-    const start = moment().startOf("week").valueOf();
-    const end = moment().endOf("week").valueOf();
-    setTimeRange({ start, end });
-  };
-
-  // funkcija za preklop na mesecni pogled
-  const setMonthlyViewToThisMonth = () => {
-    const start = moment().startOf("month").valueOf();
-    const end = moment().endOf("month").valueOf();
-    setTimeRange({ start, end });
-  };
-
   //tu fetchamo zaposlene
   const groups = [
     { id: 1, title: "Ana" },
@@ -47,12 +15,12 @@ export function DevelopersTimeline() {
   ];
 
   //tu fetchamo taske zaposlenih
-  const items = [
+  const OriginalItems = [
     {
       id: 1,
       group: 1,
       title: "Projekt A",
-      start_time: moment("2025-05-17T09:00").valueOf(),
+      start_time: moment("2025-05-13T09:00").valueOf(),
       end_time: moment("2025-05-17T11:00").valueOf(),
       itemProps: {
         style: {
@@ -199,6 +167,68 @@ export function DevelopersTimeline() {
       },
     },
   ];
+
+  // popravljen izpis v headerju --> samo ure (tudi dinamicno ko premikam urnik)
+  //1. izpis
+  const todayStart = moment().startOf("day").add(7, "hours"); // danes ob 07:00
+  const todayEnd = moment().startOf("day").add(18, "hours"); // danes ob 17:00
+
+  //state
+  const [timeRange, setTimeRange] = useState({
+    start: todayStart.valueOf(),
+    end: todayEnd.valueOf(),
+  });
+
+  // funkcija za preklop na dnevni pogled (07:00–17:00)
+  const setDailyViewToToday = () => {
+    const start = moment().startOf("day").add(7, "hours").valueOf();
+    const end = moment().startOf("day").add(18, "hours").valueOf();
+    setTimeRange({ start, end });
+  };
+
+  //funkcija za preklop na tedenski pogled
+  const setWeeklyViewToThisWeek = () => {
+    const start = moment().startOf("week").valueOf();
+    const end = moment().endOf("week").valueOf();
+    setTimeRange({ start, end });
+  };
+
+  // funkcija za preklop na mesecni pogled
+  const setMonthlyViewToThisMonth = () => {
+    const start = moment().startOf("month").valueOf();
+    const end = moment().endOf("month").valueOf();
+    setTimeRange({ start, end });
+  };
+
+  // definiramo za daily, weekly, monthly pogled
+  // Skrijemo naslove taskov, če range ni dnevni
+  const items = useMemo(() => {
+    const isDailyView =
+      moment.duration(timeRange.end - timeRange.start).asHours() <= 24;
+
+    return OriginalItems.map((item) => ({
+      ...item,
+      id: item.id + (isDailyView ? "-daily" : "-weekly"),
+      title: isDailyView ? item.title : "",
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    }));
+  }, [timeRange]);
+
+  //debugging
+  useEffect(() => {
+    console.log("timeRange changed:", timeRange);
+    console.log(
+      "items:",
+      items.map((i) => i.title)
+    );
+  }, [timeRange, items]);
 
   return (
     <div
