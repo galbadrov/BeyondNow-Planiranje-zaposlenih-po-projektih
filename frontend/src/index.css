@@ -142,3 +142,15 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* za timetable */
+[data-testid="sidebarHeader"] {
+  background-color: #111827 !important;
+  color: #f9fafb !important; /* če želiš tudi barvo teksta spremeniti */
+  width: 150px !important; /* če želiš širino zagotoviti */
+}
+
+[data-testid="dateHeaderInterval"] {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
+}

@@ -1,88 +1,153 @@
-import { Chart } from "react-google-charts";
+import Timeline from "react-calendar-timeline";
+import moment from "moment";
+import "react-calendar-timeline/dist/style.css";
+import { useEffect, useRef } from "react";
 
 export function DevelopersTimeline() {
-  const columns = [
-    { type: "string", id: "Developer" },
-    { type: "string", id: "Task" },
-    { type: "datetime", id: "Start" },
-    { type: "datetime", id: "End" },
-  ];
-
-  const rows = [
-    [
-      "Ana",
-      "Projekt A",
-      new Date(2023, 4, 16, 9, 0),
-      new Date(2023, 4, 16, 11, 0),
-    ],
-    [
-      "Ana",
-      "Sestanek",
-      new Date(2023, 4, 16, 13, 0),
-      new Date(2023, 4, 16, 14, 30),
-    ],
-    [
-      "Marko",
-      "Bug fixing",
-      new Date(2023, 4, 16, 10, 0),
-      new Date(2023, 4, 16, 12, 0),
-    ],
-    [
-      "Petra",
-      "Code review",
-      new Date(2023, 4, 16, 11, 0),
-      new Date(2023, 4, 16, 13, 0),
-    ],
-    [
-      "Petra",
-      "DevOps",
-      new Date(2023, 4, 16, 14, 0),
-      new Date(2023, 4, 16, 16, 0),
-    ],
-  ];
-
-  const start = new Date(2023, 4, 16, 9, 0);
-  const end = new Date(2023, 4, 16, 17, 0);
-
-  const generateHourlyTicks = (start: Date, end: Date) => {
-    const ticks: Date[] = [];
-    let current = new Date(start);
-    while (current <= end) {
-      ticks.push(new Date(current));
-      current.setHours(current.getHours() + 1);
-    }
-    return ticks;
+  // popravljen izpis v headerju --> samo ure (tudi dinamicno ko premikam urnik)
+  const updateHeaders = () => {
+    const headers = document.querySelectorAll(".rct-dateHeader span");
+    headers.forEach((el) => {
+      const text = el.textContent || "";
+      const match = text.match(/\d{1,2}:\d{2}/);
+      if (match) {
+        el.textContent = match[0];
+      }
+    });
   };
 
-  const options = {
-    timeline: {
-      showRowLabels: true,
-      groupByRowLabel: true,
-      rowLabelStyle: { color: "#F9FAFB", fontSize: 14 },
-      barLabelStyle: { color: "#F9FAFB", fontSize: 12 },
+  // Lahko uporabljaš ref, da ne definiraš funkcije znotraj renderja
+  const updateHeadersRef = useRef(updateHeaders);
+  updateHeadersRef.current = updateHeaders;
+
+  // Na začetku (prvi render)
+  useEffect(() => {
+    updateHeadersRef.current();
+  }, []);
+
+  const groups = [
+    { id: 1, title: "Ana" },
+    { id: 2, title: "Marko" },
+    { id: 3, title: "Petra" },
+  ];
+
+  const items = [
+    {
+      id: 1,
+      group: 1,
+      title: "Projekt A",
+      start_time: moment("2023-05-16T09:00").valueOf(),
+      end_time: moment("2023-05-16T11:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
     },
-    hAxis: {
-      ticks: generateHourlyTicks(start, end),
-      textStyle: { color: "#F9FAFB", fontSize: 12 },
-      gridlines: { color: "#F9FAFB" },
+    {
+      id: 2,
+      group: 1,
+      title: "Sestanek",
+      start_time: moment("2023-05-16T13:00").valueOf(),
+      end_time: moment("2023-05-16T14:30").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
     },
-    backgroundColor: "#111827",
-  };
+    {
+      id: 3,
+      group: 2,
+      title: "Bug fixing",
+      start_time: moment("2023-05-16T10:00").valueOf(),
+      end_time: moment("2023-05-16T12:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+    {
+      id: 4,
+      group: 3,
+      title: "Code review",
+      start_time: moment("2023-05-16T11:00").valueOf(),
+      end_time: moment("2023-05-16T13:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+    {
+      id: 5,
+      group: 3,
+      title: "DevOps",
+      start_time: moment("2023-05-16T14:00").valueOf(),
+      end_time: moment("2023-05-16T16:00").valueOf(),
+      itemProps: {
+        style: {
+          background: "#F9FAFB",
+          color: "#111827",
+          borderRadius: "8px",
+          border: "1px solid #F9FAFB",
+        },
+      },
+    },
+  ];
 
   return (
-    <div className='max-w-4xl bg-[#111827] rounded-lg shadow-md mt-4 p-6'>
-      <h2 className='text-2xl font-semibold mb-4 text-[#F9FAFB]'>
+    <div
+      style={{
+        backgroundColor: "#111827",
+        padding: "20px",
+        borderRadius: "12px",
+      }}>
+      <h2 style={{ color: "#F9FAFB", marginBottom: "20px" }}>
         Project Timetable
       </h2>
-      <Chart
-        chartType='Timeline'
-        data={[columns, ...rows]}
-        options={options}
-        width='100%'
-        height='400px'
-        loader={
-          <div className='text-center text-gray-500'>Loading graph...</div>
+      <Timeline
+        groups={groups}
+        items={items}
+        defaultTimeStart={moment("2023-05-16T08:00").valueOf()}
+        defaultTimeEnd={moment("2023-05-16T18:00").valueOf()}
+        canMove={false}
+        canResize={false}
+        lineHeight={50}
+        itemHeightRatio={0.75}
+        sidebarWidth={150}
+        sidebarContent={
+          <div
+            style={{
+              backgroundColor: "#111827",
+              color: "#F9FAFB",
+              width: 150,
+            }}>
+            Developers
+          </div>
         }
+        timeSteps={{
+          second: 0,
+          minute: 0,
+          hour: 1,
+          day: 1,
+          month: 1,
+          year: 1,
+        }}
+        style={{ color: "#F9FAFB" }}
       />
     </div>
   );
