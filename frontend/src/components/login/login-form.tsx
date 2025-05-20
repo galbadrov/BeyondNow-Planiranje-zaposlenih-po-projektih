@@ -19,6 +19,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+import { FaGoogle, FaGithub } from "react-icons/fa";
+
 export function LoginForm({
   className,
   ...props
@@ -60,8 +62,8 @@ export function LoginForm({
             <div className='grid gap-6'>
               <div className='flex flex-col gap-4'>
                 <Button variant='outline' className='w-full'>
-                  {/* Apple button (no logic yet) */}
-                  Login with Apple
+                  <FaGithub className='mr-2 h-4 w-4' />
+                  Login with GitHub
                 </Button>
                 <Button
                   variant='outline'
@@ -80,6 +82,7 @@ export function LoginForm({
                       setLoading(false);
                     }
                   }}>
+                  <FaGoogle className='mr-2 h-4 w-4' />
                   Login with Google
                 </Button>
               </div>
@@ -96,7 +99,7 @@ export function LoginForm({
                   <Input
                     id='email'
                     type='email'
-                    placeholder='m@example.com'
+                    placeholder='email@example.com'
                     required
                     ref={emailRef}
                   />
@@ -113,6 +116,7 @@ export function LoginForm({
                   <Input
                     id='password'
                     type='password'
+                    placeholder='••••••••'
                     required
                     ref={passwordRef}
                   />
@@ -128,7 +132,7 @@ export function LoginForm({
 
               <div className='text-center text-sm'>
                 Don&apos;t have an account?{" "}
-                <a href='#' className='underline underline-offset-4'>
+                <a href='/signup' className='underline underline-offset-4'>
                   Sign up
                 </a>
               </div>
