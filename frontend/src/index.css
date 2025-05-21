@@ -2,8 +2,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 /* DOTS animation */
 @keyframes moveDiagonally {
   0% {
@@ -16,6 +14,8 @@
 .animate-diagonal-move {
   animation: moveDiagonally 90s linear infinite;
 }
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
