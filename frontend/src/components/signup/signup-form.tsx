@@ -38,9 +38,12 @@ export function SignupForm({
     setLoading(true);
     setError("");
 
+    const email = emailRef.current?.value.trim() || "";
+    const password = passwordRef.current?.value || "";
+    // const firstName = firstNameRef.current?.value || "";
+    // const lastName = lastNameRef.current?.value || "";
+
     try {
-      const email = emailRef.current?.value || "";
-      const password = passwordRef.current?.value || "";
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/dashboard");
     } catch (err: any) {
