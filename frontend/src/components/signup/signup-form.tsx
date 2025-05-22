@@ -40,8 +40,6 @@ export function SignupForm({
 
     const email = emailRef.current?.value.trim() || "";
     const password = passwordRef.current?.value || "";
-    // const firstName = firstNameRef.current?.value || "";
-    // const lastName = lastNameRef.current?.value || "";
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -59,8 +57,6 @@ export function SignupForm({
         <CardHeader className='text-center'>
           <CardTitle className='text-xl'>Create an account</CardTitle>
           <CardDescription>
-            Let&apos;s get started.
-            <br />
             Fill in the details below to create your account
           </CardDescription>
         </CardHeader>
