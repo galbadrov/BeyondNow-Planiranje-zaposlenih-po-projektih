@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth";
 import { auth } from "@/firebase";
 
 import { cn } from "@/lib/utils";
@@ -18,6 +19,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 export function LoginForm({
   className,
@@ -52,16 +55,32 @@ export function LoginForm({
         <CardHeader className='text-center'>
           <CardTitle className='text-xl'>Welcome back</CardTitle>
           <CardDescription>
-            Login with your Apple or Google account
+            Login with your GitHub or Google account
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
             <div className='grid gap-6'>
               <div className='flex flex-col gap-4'>
-                <Button variant='outline' className='w-full'>
-                  {/* Apple button (no logic yet) */}
-                  Login with Apple
+                <Button
+                  variant='outline'
+                  className='w-full'
+                  onClick={async () => {
+                    try {
+                      setLoading(true);
+                      setError("");
+                      const provider = new GithubAuthProvider();
+                      await signInWithPopup(auth, provider);
+                      navigate("/dashboard");
+                    } catch (err: any) {
+                      console.error(err);
+                      setError("GitHub login failed.");
+                    } finally {
+                      setLoading(false);
+                    }
+                  }}>
+                  <FaGithub className='mr-2 h-4 w-4' />
+                  Login with GitHub
                 </Button>
                 <Button
                   variant='outline'
@@ -80,6 +99,7 @@ export function LoginForm({
                       setLoading(false);
                     }
                   }}>
+                  <FaGoogle className='mr-2 h-4 w-4' />
                   Login with Google
                 </Button>
               </div>
@@ -96,7 +116,7 @@ export function LoginForm({
                   <Input
                     id='email'
                     type='email'
-                    placeholder='m@example.com'
+                    placeholder='email@example.com'
                     required
                     ref={emailRef}
                   />
@@ -113,6 +133,7 @@ export function LoginForm({
                   <Input
                     id='password'
                     type='password'
+                    placeholder='••••••••'
                     required
                     ref={passwordRef}
                   />
@@ -128,7 +149,7 @@ export function LoginForm({
 
               <div className='text-center text-sm'>
                 Don&apos;t have an account?{" "}
-                <a href='#' className='underline underline-offset-4'>
+                <a href='/signup' className='underline underline-offset-4'>
                   Sign up
                 </a>
               </div>
