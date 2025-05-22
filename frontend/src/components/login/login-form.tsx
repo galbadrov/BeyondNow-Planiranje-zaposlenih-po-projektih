@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth";
 import { auth } from "@/firebase";
 
 import { cn } from "@/lib/utils";
@@ -54,14 +55,30 @@ export function LoginForm({
         <CardHeader className='text-center'>
           <CardTitle className='text-xl'>Welcome back</CardTitle>
           <CardDescription>
-            Login with your Apple or Google account
+            Login with your GitHub or Google account
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
             <div className='grid gap-6'>
               <div className='flex flex-col gap-4'>
-                <Button variant='outline' className='w-full'>
+                <Button
+                  variant='outline'
+                  className='w-full'
+                  onClick={async () => {
+                    try {
+                      setLoading(true);
+                      setError("");
+                      const provider = new GithubAuthProvider();
+                      await signInWithPopup(auth, provider);
+                      navigate("/dashboard");
+                    } catch (err: any) {
+                      console.error(err);
+                      setError("GitHub login failed.");
+                    } finally {
+                      setLoading(false);
+                    }
+                  }}>
                   <FaGithub className='mr-2 h-4 w-4' />
                   Login with GitHub
                 </Button>
