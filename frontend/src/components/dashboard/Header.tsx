@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export function Header() {
+  const navigate = useNavigate();
+
   const organizations = [
     { id: 1, name: "Organizacija A" },
     { id: 2, name: "Organizacija B" },
@@ -34,7 +38,9 @@ export function Header() {
             ))}
           </select>
         </form>
-        <button className='hover:bg-[#e3e3e3] bg-[#F9FAFB] text-[#111827] px-4 rounded-md ml-auto mr-5 cursor-pointer'>
+        <button
+          onClick={() => navigate("/")}
+          className='hover:bg-[#e3e3e3] bg-[#F9FAFB] text-[#111827] px-4 rounded-md ml-auto mr-5 cursor-pointer'>
           LOGOUT
         </button>
       </div>

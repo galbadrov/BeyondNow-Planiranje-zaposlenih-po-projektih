@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 
 //const projekti = async () => fetch("http://localhost:3000/api/projects");
 
-// const projekti = [];
+
+//const projekti = [];
+
 
 type project = {
   id: number;
