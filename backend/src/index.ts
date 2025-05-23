@@ -1,24 +1,23 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { Pool } from "pg";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { prisma } from "./db";
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(express.json());
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+app.get("/", async (req, res) => {
+  const count = await prisma.developer.count();
+  res.send(`There are ${count} developers in the database.`);
 });
 
-app.get("/api/hello", async (_req, res) => {
-  res.json({ message: "Hello from Express + PostgreSQL + TypeScript!" });
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from the backend" });
 });
 
-const PORT = process.env.PORT;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

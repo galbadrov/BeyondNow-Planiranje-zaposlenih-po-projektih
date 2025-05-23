@@ -8,7 +8,9 @@ const Landing: React.FC = () => {
   useEffect(() => {
     const fetchHello = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/hello`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL_LOCAL}/api/hello`
+        );
         const data = await res.json();
         console.log("Backend says:", data.message); // Should log: Hello from Express...
       } catch (error) {
