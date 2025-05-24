@@ -6,6 +6,7 @@ import { prisma } from "./db";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+var dotenv = require("dotenv");
 app.use(cors());
 app.use(express.json());
 
